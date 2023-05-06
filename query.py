@@ -3,7 +3,7 @@ import pandas as pd
 import streamlit as st
 
 
-@st.cache_data
+@st.cache
 def query_database(query_type, wind=None, crew=None, date=None, vmg_avg=None, waves=None, current=None, rating=None,
                    wind_min=None, wind_max=None, wind_avg=None):
     # establish a connection to the MySQL server for mysql.connecter
