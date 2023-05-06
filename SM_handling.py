@@ -516,7 +516,7 @@ def upload_session(SM_Rawfile, Wind_Rawfile, Log, Predictionmodel, database_user
 
     print('Done')
 
-@st.cache_data
+@st.cache
 def upload_session_step1(SM_Rawfile, Wind_Rawfile, _SegmentPredictionmodel, vmgmin=4, lenghtmin=20):
 
     SM = SM_Rawfile
