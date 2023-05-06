@@ -435,16 +435,23 @@ def upload_session(SM_Rawfile, Wind_Rawfile, Log, Predictionmodel, database_user
     print('Segments filtered and joined')
 
     # establish a connection to the MySQL server for SQLAlchemy
-    database_connection = sqlalchemy.create_engine('mysql+mysqlconnector://{0}:{1}@{2}/{3}'.
+    # database_connection = sqlalchemy.create_engine('mysql+mysqlconnector://{0}:{1}@{2}/{3}'.
+    #                                                format(database_username, database_password,
+    #                                                       database_ip, database_name))
+
+    database_connection = sqlalchemy.create_engine('mysql+mysqlconnector://{0}:{1}@{2}:{3}/{4}'.
                                                    format(database_username, database_password,
-                                                          database_ip, database_name))
+                                                          '127.0.0.1', 3306, database_name))
 
     print('Connection with sqlAlch made')
 
     # establish a connection to the MySQL server for mysql.connecter
     # connect to the database
-    cnx = mysql.connector.connect(user='root', password='49er',
-                                  host='127.0.0.1', database='bac')
+    # cnx = mysql.connector.connect(user='root', password='49er',
+    #                               host='127.0.0.1', database='bac')
+    cnx = mysql.connector.connect(user='root', password='49erproject',
+                                  host='127.0.0.1', port=3306, database='bac')
+
     # create a cursor object
     cursor = cnx.cursor()
 
@@ -516,7 +523,7 @@ def upload_session(SM_Rawfile, Wind_Rawfile, Log, Predictionmodel, database_user
 
     print('Done')
 
-@st.cache
+@st.cache_data
 def upload_session_step1(SM_Rawfile, Wind_Rawfile, _SegmentPredictionmodel, vmgmin=4, lenghtmin=20):
 
     SM = SM_Rawfile
@@ -549,8 +556,11 @@ def upload_session_step1(SM_Rawfile, Wind_Rawfile, _SegmentPredictionmodel, vmgm
 def fetch_crew():
     # establish a connection to the MySQL server for mysql.connecter
     # connect to the database
-    cnx = mysql.connector.connect(user='root', password='49er',
-                                  host='127.0.0.1', database='bac')
+    # cnx = mysql.connector.connect(user='root', password='49er',
+    #                               host='127.0.0.1', database='bac')
+    cnx = mysql.connector.connect(user='root', password='49erproject',
+                                  host='127.0.0.1', port=3306, database='bac')
+
     # create a cursor object
     cursor = cnx.cursor()
 

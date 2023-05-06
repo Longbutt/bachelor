@@ -3,11 +3,15 @@ import pandas as pd
 import streamlit as st
 
 
-@st.cache
+@st.cache_data
 def query_database(query_type, wind=None, crew=None, date=None, vmg_avg=None, waves=None, current=None, rating=None,
                    wind_min=None, wind_max=None, wind_avg=None):
     # establish a connection to the MySQL server for mysql.connecter
-    cnx = mysql.connector.connect(user='root', password='49er', host='127.0.0.1', database='bac')
+    # cnx = mysql.connector.connect(user='root', password='49er', host='127.0.0.1', database='bac')
+
+    cnx = mysql.connector.connect(user='root', password='49erproject',
+                                  host='127.0.0.1', port=3306, database='bac')
+
     # create a cursor object
     cursor = cnx.cursor()
 

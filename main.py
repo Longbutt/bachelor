@@ -465,8 +465,11 @@ if options == 'Upload':
 
         # establish a connection to the MySQL server for mysql.connecter
         # connect to the database
-        cnx = mysql.connector.connect(user='root', password='49er',
-                                      host='127.0.0.1', database='bac')
+        # cnx = mysql.connector.connect(user='root', password='49er',
+        #                               host='127.0.0.1', database='bac')
+        cnx = mysql.connector.connect(user='root', password='49erproject',
+                                      host='127.0.0.1', port=3306, database='bac')
+
         # create a cursor object
         cursor = cnx.cursor()
 
