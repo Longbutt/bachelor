@@ -1,0 +1,1 @@
+web: chmod +x cloud_sql_proxy && ./cloud_sql_proxy -instances=sailingproject:europe-north1:sailproject=tcp:3306 & streamlit run main.py
