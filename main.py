@@ -23,6 +23,10 @@ with open("key.json", "w") as key_file:
     json_key = json.loads(st.secrets["GCP"]["SERVICE_ACCOUNT_KEY"])
     json.dump(json_key, key_file)
 
+# Print the contents of the key.json file
+with open("key.json", "r") as key_file:
+    print(key_file.read())
+
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "key.json"
 
 # Start the Cloud SQL Proxy if it's not already running
