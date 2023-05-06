@@ -11,7 +11,14 @@ from file_handling import *
 import openpyxl
 import joblib
 import re
+import json
+import os
 
+gcp_service_account_key = json.loads(st.secrets["GCP"]["SERVICE_ACCOUNT_KEY"])
+with open("key.json", "w") as key_file:
+    json.dump(gcp_service_account_key, key_file)
+
+os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "key.json"
 
 
 def create_relative_time(group):
