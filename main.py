@@ -13,12 +13,30 @@ import joblib
 import re
 import json
 import os
+import json
+import os
+import subprocess
+import psutil
 
+# Set up the Google Application Credentials environment variable
 gcp_service_account_key = json.loads(st.secrets["GCP"]["SERVICE_ACCOUNT_KEY"])
 with open("key.json", "w") as key_file:
     json.dump(gcp_service_account_key, key_file)
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "key.json"
+
+# Start the Cloud SQL Proxy if it's not already running
+proxy_process = None
+for process in psutil.process_iter(["name", "cmdline"]):
+    if "cloud_sql_proxy" in process.info["name"]:
+        proxy_process = process
+        break
+
+if proxy_process is None:
+    proxy_command = "curl -o cloud_sql_proxy https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 && chmod +x cloud_sql_proxy && ./cloud_sql_proxy -instances=sailingproject:europe-north1:sailproject=tcp:3306"
+    proxy_process = subprocess.Popen(proxy_command, shell=True, preexec_fn=os.setsid)
+
+# Add a st.stop() at the end of your app to prevent re-runs
 
 
 def create_relative_time(group):
@@ -505,3 +523,6 @@ if options == 'Draft':
     # create the button
     if st.button("Click me!"):
         my_function()
+
+
+st.stop()
