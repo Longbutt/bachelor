@@ -21,7 +21,7 @@ import psutil
 # Set up the Google Application Credentials environment variable
 with open("key.json", "w") as key_file:
     json_key = json.loads(st.secrets["GCP"]["SERVICE_ACCOUNT_KEY"])
-    json.dump(json_key, key_file)
+    json.dump(json_key, key_file, indent=2)
 
 # Print the contents of the key.json file
 with open("key.json", "r") as key_file:
