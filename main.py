@@ -19,9 +19,8 @@ import subprocess
 import psutil
 
 # Set up the Google Application Credentials environment variable
-gcp_service_account_key = json.loads(st.secrets["GCP"]["SERVICE_ACCOUNT_KEY"])
 with open("key.json", "w") as key_file:
-    json.dump(gcp_service_account_key, key_file)
+    key_file.write(st.secrets["GCP"]["SERVICE_ACCOUNT_KEY"])
 
 os.environ["GOOGLE_APPLICATION_CREDENTIALS"] = "key.json"
 
