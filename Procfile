@@ -1,1 +1,1 @@
-web: echo $GCP_SERVICE_ACCOUNT_KEY > key.json && export GOOGLE_APPLICATION_CREDENTIALS=key.json && curl -o cloud_sql_proxy https://dl.google.com/cloudsql/cloud_sql_proxy.linux.amd64 && chmod +x cloud_sql_proxy && ./cloud_sql_proxy -instances=sailingproject:europe-north1:sailproject=tcp:3306 & streamlit run main.py
+web: echo $GCP_SERVICE_ACCOUNT_KEY > key.json && export GOOGLE_APPLICATION_CREDENTIALS=key.json && streamlit run main.py
